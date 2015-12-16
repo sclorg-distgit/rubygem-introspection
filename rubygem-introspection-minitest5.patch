@@ -1,0 +1,110 @@
+diff --git a/test/class_snapshot_test.rb b/test/class_snapshot_test.rb
+index 8659822..2537cfa 100644
+--- a/test/class_snapshot_test.rb
++++ b/test/class_snapshot_test.rb
+@@ -1,6 +1,6 @@
+ require "test_helper"
+ 
+-class ClassSnapshotTest < Test::Unit::TestCase
++class ClassSnapshotTest < Minitest::Test
+ 
+   def test_detect_class_method_on_class
+     for_all_method_visibilities do |visibility|
+@@ -84,4 +84,4 @@ class ClassSnapshotTest < Test::Unit::TestCase
+     end
+   end
+ 
+-end
+\ No newline at end of file
++end
+diff --git a/test/instance_snapshot_test.rb b/test/instance_snapshot_test.rb
+index 3b50283..53ca561 100644
+--- a/test/instance_snapshot_test.rb
++++ b/test/instance_snapshot_test.rb
+@@ -1,6 +1,6 @@
+ require "test_helper"
+ 
+-class InstanceSnapshotTest < Test::Unit::TestCase
++class InstanceSnapshotTest < Minitest::Test
+ 
+   def test_detect_instance_method_on_singleton_class
+     for_all_method_visibilities do |visibility|
+@@ -119,4 +119,4 @@ class InstanceSnapshotTest < Test::Unit::TestCase
+     end
+   end
+ 
+-end
+\ No newline at end of file
++end
+diff --git a/test/module_snapshot_test.rb b/test/module_snapshot_test.rb
+index d6a3498..27bea65 100644
+--- a/test/module_snapshot_test.rb
++++ b/test/module_snapshot_test.rb
+@@ -1,6 +1,6 @@
+ require "test_helper"
+ 
+-class ModuleSnapshotTest < Test::Unit::TestCase
++class ModuleSnapshotTest < Minitest::Test
+ 
+   def test_detect_module_method_on_module
+     for_all_method_visibilities do |visibility|
+@@ -37,4 +37,4 @@ class ModuleSnapshotTest < Test::Unit::TestCase
+       assert_method_exists(mod, superdupermod, :foo, visibility)
+     end
+   end
+-end
+\ No newline at end of file
++end
+diff --git a/test/snapshot_test.rb b/test/snapshot_test.rb
+index c81f379..a5885dc 100644
+--- a/test/snapshot_test.rb
++++ b/test/snapshot_test.rb
+@@ -1,7 +1,7 @@
+ require "test_helper"
+ require "blankslate"
+ 
+-class SnapshotTest < Test::Unit::TestCase
++class SnapshotTest < Minitest::Test
+ 
+   include Introspection
+ 
+@@ -49,7 +49,8 @@ class SnapshotTest < Test::Unit::TestCase
+   end
+ 
+   def test_should_cope_with_blankslate_object
+-    assert_nothing_raised { Snapshot.new(BlankSlate.new) }
++    # Should not raise anything
++    Snapshot.new(BlankSlate.new)
+   end
+ 
+-end
+\ No newline at end of file
++end
+diff --git a/test/test_helper.rb b/test/test_helper.rb
+index a4c1df8..400a743 100644
+--- a/test/test_helper.rb
++++ b/test/test_helper.rb
+@@ -2,7 +2,7 @@ require "rubygems"
+ require "bundler/setup"
+ 
+ require "introspection"
+-require "test/unit"
++require "minitest/autorun"
+ 
+ module Introspection
+   module TestHelper
+@@ -23,8 +23,8 @@ module Introspection
+   end
+ end
+ 
+-class Test::Unit::TestCase
++class Minitest::Test
+   include Introspection::TestHelper
+   include Introspection::LocalAssertions
+   include Introspection::Assertions
+-end
+\ No newline at end of file
++end
+-- 
+1.9.3
+
