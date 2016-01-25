@@ -1,0 +1,36 @@
+From ae8f3953390eeea827765f907e0f3fcf3b15ce90 Mon Sep 17 00:00:00 2001
+From: Josef Stribny <jstribny@redhat.com>
+Date: Mon, 19 Jan 2015 13:46:48 +0100
+Subject: [PATCH] Remove unnecce. deps
+
+---
+ introspection.gemspec | 6 ------
+ 1 file changed, 6 deletions(-)
+
+diff --git a/specifications/introspection-0.0.3.gemspec b/specifications/introspection-0.0.3.gemspec
+index e4798c3..98ce791 100644
+--- a/specifications/introspection-0.0.3.gemspec
++++ b/specifications/introspection-0.0.3.gemspec
+@@ -24,19 +24,13 @@ Gem::Specification.new do |s|
+ 
+     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+       s.add_runtime_dependency(%q<metaclass>, ["~> 0.0.1"])
+-      s.add_runtime_dependency(%q<instantiator>, ["~> 0.0.3"])
+       s.add_development_dependency(%q<rake>, [">= 0"])
+-      s.add_development_dependency(%q<blankslate>, [">= 0"])
+     else
+       s.add_dependency(%q<metaclass>, ["~> 0.0.1"])
+-      s.add_dependency(%q<instantiator>, ["~> 0.0.3"])
+       s.add_dependency(%q<rake>, [">= 0"])
+-      s.add_dependency(%q<blankslate>, [">= 0"])
+     end
+   else
+     s.add_dependency(%q<metaclass>, ["~> 0.0.1"])
+-    s.add_dependency(%q<instantiator>, ["~> 0.0.3"])
+     s.add_dependency(%q<rake>, [">= 0"])
+-    s.add_dependency(%q<blankslate>, [">= 0"])
+   end
+ end
+-- 
+1.9.3
+
